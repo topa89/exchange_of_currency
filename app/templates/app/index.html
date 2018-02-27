@@ -1,0 +1,296 @@
+{% extends "app/base.html" %} {% block content %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Обменник</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+</nav>
+<div class="container">
+    <br>
+    <br>
+    <div style="color: white">
+        <p>Наш обменник предназначен для тех, кто быстро, безопасно и по выгодному курсу хочет обменять валюту.</p>
+        <p>Наш пункт обмена электронных валют - система, созданная на базе современного программного обеспечения и поддерживаемая
+            весь набор необходимых функций для удобной работы и безопасной конвертации наиболее распространенных видов электронных
+            денег. Мы делаем все возможное, чтобы ваши впечатление от нашего сервиса были благоприятными.</p>
+    </div>
+    <br>
+    <br>
+    <div class="text-center center-block" style="color: white">
+        <h2>Быстрый и легкий обмен валюты</h2>
+    </div>
+    <br>
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <h4 class="display-5 give_get">1. Вы отдаете</h4>
+
+                    <div class="input-group mb-3 input-top">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="input_value" data-seo="bitcoin" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="../static/images/bitcoin.png" width="32" height="32">
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#" data-seo="bitcoin" data-val="BTC" style="display: none">
+                                    <img src="../static/images/bitcoin.png" width="32" height="32">Bitcoin
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-seo="sberbank" data-val="RUB">
+                                    <img src="../static/images/sberbank.png" width="32" height="32">Сбербанк
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-seo="qiwi" data-val="RUB">
+                                    <img src="../static/images/qiwi.png" width="32" height="32">QIWI
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-seo="ethereum" data-val="ETC">
+                                    <img src="../static/images/ethereum.png" width="32" height="32">Ethereum
+                                </a>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="input_from" placeholder="min: 0.001">
+                        <div class="input-group-append">
+                            <label class="input-group-text" for="inputGroupSelect02">BTC</label>
+                        </div>
+                    </div>
+                    <div class="block-text input-top">
+                        <p>Комиссия 2.5%</p>
+                        <p>Инфа </p>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <h4 class="display-5 give_get">2. Вы получите</h4>
+                    <div class="input-group mb-3 input-top">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="output_value" data-seo="sberbank" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="../static/images/sberbank.png" width="32" height="32">
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#" data-seo="sberbank" data-val="RUB" style="display: none">
+                                    <img src="../static/images/sberbank.png" width="32" height="32">Сбербанк
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-seo="bitcoin" data-val="BTC">
+                                    <img src="../static/images/bitcoin.png" width="32" height="32">Bitcoin
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-seo="qiwi" data-val="RUB">
+                                    <img src="../static/images/qiwi.png" width="32" height="32">QIWI
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-seo="ethereum" data-val="RUB">
+                                    <img src="../static/images/ethereum.png" width="32" height="32">Ethereum
+                                </a>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="input_to" aria-label="">
+                        <div class="input-group-append">
+                            <label class="input-group-text" for="inputGroupSelect02">RUB</label>
+                        </div>
+                    </div>
+                    <div class="block-text input-top">
+                        <p>Обмен по курсу:
+                            <span id="kurs_from">1</span>
+                            <span>BTC</span> =
+                            <span id="kurs_to">{{ kurs_val.BTC_RUB }}</span>
+                            <span>RUB</span>
+                        </p>
+                        <p>Резерв:
+                            <span id="reserve">{{ limit.SBERBANK }}р</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="lead">
+                <div class="text-center center-block">
+                    <button type="button" id="check_inputs" class="btn btn-primary btn-lg" data-target="#exampleModal" style="width: 200px">Продолжить</button>
+                </div>
+            </p>
+        </div>
+
+    </div>
+    <center>
+        <img src="../static/images/double-down.png" width="64" height="64">
+    </center>
+    <div class="container" style="width: 90%">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="media">
+                        <img class="mr-3" src="../static/images/bitcoin.png" alt="Generic placeholder image" height="40" width="40">
+                        <div class="media-body">
+                            <p class="mt-0">
+                                <h6>Bitcoin
+                                    <span class="badge badge-primary" id="lim_bitcoin">{{ limit.BTC }}</span>
+                                </h6>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="card">
+                    <div class="media">
+                        <img class="mr-3" src="../static/images/sberbank.png" alt="Generic placeholder image" height="40" width="40">
+                        <div class="media-body">
+                            <p class="mt-0">
+                                <h6>Сбербанк
+                                    <span class="badge badge-primary" id="lim_sberbank">{{ limit.SBERBANK }}</span>
+                                </h6>
+                            </p>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+
+                <div class="card">
+                    <div class="media">
+                        <img class="mr-3" src="../static/images/qiwi.png" alt="Generic placeholder image" height="40" width="40">
+                        <div class="media-body">
+                            <p class="mt-0">
+                                <h6>QIWI RUB
+                                    <span class="badge badge-primary" id="lim_qiwi">{{ limit.QIWI }}</span>
+                                </h6>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-12 mt-5"></div>
+    <footer class="page-footer font-small indigo pt-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright py-3 text-center">
+            <div class="container-fluid" style="color: white">
+                © 2016 Copyright: Обменник </a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!--Оформление заявки-->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Оформление заявки</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                        <div class="text-center center-block">
+                    <h5></h5></div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">E-mail</span>
+                        </div>
+                        <input type="email" id="user_email" class="form-control" aria-label="Default" placeholder="example@mail.ru" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Номер карты:</span>
+                        </div>
+                        <input type="text" class="form-control" id="card_number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary"  data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary" data-target="#exampleModal5" id="order">Обменять</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Перевод денег-->
+<div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Перевод денег</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form_order" action="{% url 'send_order' %}">{% csrf_token %}
+                <div class="modal-body">
+                    <div class="container">
+                        <h3 class="text-center center-block" id="order_timer">
+                            <span id="minutes">14</span> мин.
+                            <span id="seconds">59</span> с.</h3>
+
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Сумма:</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="0.001BTC">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Bitcoin</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" value="0xfv3ccdc5vfvf" readonly>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="stopTimer" data-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-primary" href="{{ send_email }}" data-toggle="modal" id="acceptOrder" data-target="#exampleModalobr">Я оплатил</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<!--First column-->
+<div class="modal fade" id="exampleModalobr" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel">Вы успешно создали заявку!</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="text-center center-block">
+                        <h5 class="modal-title" id="exampleModalLabel">Ваша заявка в обработке!</h5>
+                        <br>
+
+                        <div class="alert alert-info" role="alert">
+                            Среднее время подтверждения транзакции составляет от 25 минут до нескольких часов. Перевод отображается только после 2 подтверждений.
+                        </div>
+                        <p>На указанный Вами почтовый адрес будет доставлено письмо</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" id="button_submit" data-dismiss="modal" data-target="#">Вернуться на сайт</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+body {
+    background-image: url(../static/images/background.jpg);
+    background-repeat: no-repeat;
+    -o-background-size: 100% 100%; /* opera ≥ 9.5 */
+    -webkit-background-size: 100% 100%; /* Safari ≥ 5.0, Chrome ≥ 4.0 */
+    -khtml-background-size: 100% 100%; /* Konqueror ≥ 3.5.4 */
+    -moz-background-size: 100% 100%; /* Firefox ≥ 3.6 */
+    background-size: 100% 100%; /* CSS3 */
+       /* FF ≥ 4, Opera ≥ 10.53, IE ≥ 9.0 */
+    font-size: 14px;
+    	font-family: Arial;
+}
+
+.give_get {
+    padding-left: 1em;
+}
+
+.block-text {
+    padding-left: 2em;
+}
+
+.input-top {
+    padding-top: 2em;
+}
+
+.limit-val {
+    float: right;
+}
+
+.navbar.navbar-expand-lg.navbar-light.bg-light {
+    box-shadow: 0 8px 8px 0px rgba(0, 0, 0, .2);
+}
+
+.jumbotron {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #F8F9FA;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    width: 70%;
+}
+
