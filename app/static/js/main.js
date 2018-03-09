@@ -22,7 +22,7 @@ $(document).ready(function () {
             url: url,
             type: 'POST',
             data: data,
-            cache: true,
+            cache: false,
 
         })
 

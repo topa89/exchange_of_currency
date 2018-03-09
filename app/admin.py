@@ -1,11 +1,12 @@
 from django.contrib import admin
 
-from .models import limit_val
+from .models import LimitVal
+from orders.models import Orders
 
-
-class LimnitAdmin(admin.ModelAdmin):
+class LimitAdmin(admin.ModelAdmin):
     list_display = ('name', 'index', 'reserve')
 
 
-admin.site.register(limit_val, LimnitAdmin)
-# Register your models here.
+admin.site.register(LimitVal, LimitAdmin)
+admin.site.register(Orders)
+
