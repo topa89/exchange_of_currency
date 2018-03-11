@@ -118,7 +118,6 @@ $(document).ready(function () {
 
     push_exchange_on_modal();
 
-
 });
 
 function push_exchange_on_modal() {

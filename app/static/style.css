@@ -27,6 +27,12 @@ body {
     float: right;
 }
 
+.mr-3 {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 0.5em;
+}
+
 .navbar.navbar-expand-lg.navbar-light.bg-light {
     box-shadow: 0 8px 8px 0px rgba(0, 0, 0, .2);
 }
