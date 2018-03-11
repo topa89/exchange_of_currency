@@ -11,6 +11,7 @@ class Orders(models.Model):
 
     def __str__(self):
         return '{}, {} -> {}'.format(self.email , self.input_val, self.output_val)
+        
     class Meta:
         verbose_name_plural = 'Заказы'
         verbose_name = 'Заказ'

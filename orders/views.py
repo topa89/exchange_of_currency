@@ -5,6 +5,19 @@ from .models import Orders
 
 from django.core.mail import EmailMessage
 
+
+def open_admin(request):
+    order = {
+        'orders': Orders.objects.all(),
+        }
+    return render(request, 'orders/index.html', order)
+
+def all_orders(request):
+    orders = {
+        'orders': Orders.objects.all()
+        }
+    return render(request, 'orders/tables.html', orders)
+
 def send_order(request):
     post = request.POST
     email = post['email']
@@ -29,3 +42,4 @@ def send_order(request):
     return_dict = dict()
     print(post)
     return JsonResponse(return_dict)
+

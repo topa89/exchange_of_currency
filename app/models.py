@@ -1,8 +1,6 @@
 from django.db import models
 
 
-# Create your models here.
-
 class LimitVal(models.Model):
     index = models.CharField(max_length=10, verbose_name='Валюта')
     name = models.CharField(max_length=30, verbose_name='Название')
