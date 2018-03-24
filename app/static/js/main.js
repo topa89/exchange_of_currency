@@ -118,6 +118,25 @@ $(document).ready(function () {
 
     push_exchange_on_modal();
 
+    // смена валюты
+    $('.dropdown-item').slice(0, 4).click(function(){
+
+        if ($('#output_value').attr('data-seo') != $(this).attr('data-seo'))
+        {
+            $('#input_img').attr('src', '../static/images/' + $(this).attr('data-seo') + '.png');
+            $('#input_label').text($(this).attr('data-val'));
+            $('#input_value').attr('data-seo', $(this).attr('data-seo'));
+        }
+    });
+    $('.dropdown-item').slice(4, 8).click(function(){
+        if ($('#input_value').attr('data-seo') != $(this).attr('data-seo'))
+        {
+            $('#output_img').attr('src', '../static/images/' + $(this).attr('data-seo') + '.png');
+            $('#output_label').text($(this).attr('data-val'));
+            $('#output_value').attr('data-seo', $(this).attr('data-seo'));
+        }
+    });
+
 });
 
 function push_exchange_on_modal() {

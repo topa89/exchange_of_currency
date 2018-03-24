@@ -18,7 +18,6 @@ def get_reserve_valute(title):
     return LimitVal.objects.get(name=title).reserve
 
 
-# @cache_page(CACHE_TTL)
 def index(request):
     kurs_val = {'BTC_RUB': 556304}
     limit = {
