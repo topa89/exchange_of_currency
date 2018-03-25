@@ -41,11 +41,11 @@ INSTALLED_APPS = [
 ]
 
 # CELERY STUFF
-"""BROKER_URL = 'redis://localhost:6379'
+BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'"""
+CELERY_RESULT_SERIALIZER = 'json'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-"""CACHES = {
+CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379/1",
@@ -114,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
          
         },
     }
-}"""
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/

@@ -1,0 +1,95 @@
+{% block columns %}
+<div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <h4 class="display-5 give_get">1. Вы отдаете</h4>
+
+                    <div class="input-group mb-3 input-top">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="input_value" data-seo="bitcoin" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="../static/images/bitcoin.png" id='input_img' width="32" height="32">
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" data-seo="bitcoin" data-val="BTC" style="display: none">
+                                    <img src="../static/images/bitcoin.png" width="32" height="32">Bitcoin
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" data-seo="sberbank" data-val="RUB">
+                                    <img src="../static/images/sberbank.png" width="32" height="32">Сбербанк
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" data-seo="qiwi" data-val="RUB">
+                                    <img src="../static/images/qiwi.png" width="32" height="32">QIWI
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" data-seo="ethereum" data-val="ETC">
+                                    <img src="../static/images/ethereum.png" width="32" height="32">Ethereum
+                                </a>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="input_from" placeholder="min: 0.001">
+                        <div class="input-group-append">
+                            <label class="input-group-text" id="input_label" for="inputGroupSelect02">BTC</label>
+                        </div>
+                    </div>
+                    <div class="block-text input-top">
+                        <p>Комиссия 2.5%</p>
+                        <p>Инфа </p>
+                    </div>
+                </div>
+                <div class="col-sm">
+                    <h4 class="display-5 give_get">2. Вы получите</h4>
+                    <div class="input-group mb-3 input-top">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="output_value" data-seo="sberbank" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <img src="../static/images/sberbank.png" id="output_img" width="32" height="32">
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" data-seo="sberbank" data-val="RUB" style="display: none">
+                                    <img src="../static/images/sberbank.png" width="32" height="32">Сбербанк
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" data-seo="bitcoin" data-val="BTC">
+                                    <img src="../static/images/bitcoin.png" width="32" height="32">Bitcoin
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" data-seo="qiwi" data-val="RUB">
+                                    <img src="../static/images/qiwi.png" width="32" height="32">QIWI
+                                </a>
+                                <div role="separator" class="dropdown-divider"></div>
+                                <a class="dropdown-item" data-seo="ethereum" data-val="ETC">
+                                    <img src="../static/images/ethereum.png" width="32" height="32">Ethereum
+                                </a>
+                            </div>
+                        </div>
+                        <input type="text" class="form-control" id="input_to" aria-label="">
+                        <div class="input-group-append">
+                            <label class="input-group-text" id="output_label" for="inputGroupSelect02">RUB</label>
+                        </div>
+                    </div>
+                    <div class="block-text input-top">
+                        <p>Обмен по курсу:
+                            <span id="kurs_from">1</span>
+                            <span>BTC</span> =
+                            <span id="kurs_to">{{ kurs_val.BTC_RUB }}</span>
+                            <span>RUB</span>
+                        </p>
+                        <p>Резерв:
+                            <span id="reserve">{{ limit.SBERBANK }}р</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="lead">
+                <div class="text-center center-block">
+                    <button type="button" id="check_inputs" class="btn btn-primary btn-lg" data-target="#makeorder" style="width: 200px">Продолжить</button>
+                </div>
+            </p>
+        </div>
+
+    </div>
+{% endblock %}

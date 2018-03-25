@@ -1,0 +1,70 @@
+{% block valute %}
+<div class="container" style="width: 90%">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="media">
+                    <img class="mr-3" src="../static/images/bitcoin.png" alt="Generic placeholder image" height="40" width="40">
+                    <div class="media-body">
+                        <p class="mt-0">
+                            <h6>Bitcoin<br>
+                                <span class="badge badge-primary" id="lim_bitcoin">{{ limit.BTC }}</span>
+                            </h6>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card">
+                <div class="media">
+                    <img class="mr-3" src="../static/images/sberbank.png" alt="Generic placeholder image" height="40" width="40">
+                    <div class="media-body">
+                        <p class="mt-0">
+                            <h6>Сбербанк
+                                <span class="badge badge-primary" id="lim_sberbank">{{ limit.SBERBANK }}</span>
+                            </h6>
+                        </p>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        
+        <div class="col">
+            <div class="card">
+                <div class="media">
+                    <img class="mr-3" src="../static/images/qiwi.png" alt="Generic placeholder image" height="40" width="40">
+                    <div class="media-body">
+                        <p class="mt-0">
+                            <h6>QIWI RUB
+                                <span class="badge badge-primary" id="lim_qiwi">{{ limit.QIWI }}</span>
+                            </h6>
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col">
+                <div class="card">
+                    <div class="media">
+                        <img class="mr-3" src="../static/images/ethereum.png" alt="Generic placeholder image" height="40" width="40">
+                        <div class="media-body">
+                            <p class="mt-0">
+                                <h6>Ethereum
+                                    <span class="badge badge-primary" id="lim_etc">{{ limit.ETC }}</span>
+                                </h6>
+                            </p>
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+
+    </div>
+</div>
+{% endblock %}
