@@ -1,6 +1,9 @@
 var timer;
 $(document).ready(function () {
     var form = $("#form_order");
+    var kurs = $("#kurs_to").text();
+    var formLogin = $("#formLogin");
+
 
     form.on("submit", function (e) {
         $("#moneyTransfer").hide();
@@ -27,16 +30,39 @@ $(document).ready(function () {
         })
 
     });
+
+    formLogin.on("submit", function (e) {
+        e.preventDefault()
+
+        var data = {};
+        data.email = $("#loginEmail").val();
+        data.password = $("#loginPassword").val();
+
+        var csrf_token = $("#formLogin [name='csrfmiddlewaretoken]").val();
+        data["csrfmiddlewaretoken"] = csrf_token;
+        var url = form.attr("action");
+
+        $.ajax({
+            url: url,
+            data: data,
+            type: "POST",
+            cache: false,
+        })
+    });
+
     // считаем курс
     $("#input_from").keyup(function () {
-        var procent = parseInt($(this).val() * ($("#kurs_to").text() / $("#kurs_from").text())) * 0.025;
-        $("#input_to").val(parseInt($(this).val() * ($("#kurs_to").text() / $("#kurs_from").text()) + procent));
+        $('.hidescreen, .load_page').fadeIn(10); //показывает фон и индикатор
+
+        var procent = parseInt($(this).val() * (kurs / $("#kurs_from").text())) * 0.025;
+        $("#input_to").val(parseInt($(this).val() * (kurs / $("#kurs_from").text()) + procent));
         push_exchange_on_modal();
+        $('.hidescreen, .load_page').fadeOut(10); //показывает фон и индикатор
     });
 
     $("#input_to").keyup(function () {
-        var procent = parseInt($(this).val() / ($("#kurs_to").text() / $("#kurs_from").text())) * 0.025;
-        $("#input_from").val($(this).val() / ($("#kurs_to").text() / $("#kurs_from").text() + procent));
+        var procent = parseInt($(this).val() / (kurs / $("#kurs_from").text())) * 0.025;
+        $("#input_from").val($(this).val() / (kurs / $("#kurs_from").text() + procent));
         push_exchange_on_modal();
     });
 

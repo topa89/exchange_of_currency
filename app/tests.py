@@ -1,8 +1,7 @@
 from django.test import TestCase
-from django.urls import reverse
 
 from .models import LimitVal
-from .views import index, get_reserve_valute
+from .views import get_reserve_valute
 # Create your tests here.
 class TestApp(TestCase):
     # models
@@ -16,7 +15,6 @@ class TestApp(TestCase):
             name=name,
             reserve=reserve,
             min_val=min_val)
-    
     def test_create_val(self):
         a = self.create_val()
 
@@ -28,7 +26,8 @@ class TestApp(TestCase):
         self.assertEqual(a.min_val, 0.03)
 
     def test_get_reserve(self):
-        a = self.create_val()
+        self.create_val()
 
-        self.assertEqual(LimitVal.objects.get(name='Bitcoin').reserve, get_reserve_valute('Bitcoin'))
-
+        self.assertEqual(
+            LimitVal.objects.get(name='Bitcoin').reserve,
+            get_reserve_valute('Bitcoin'))

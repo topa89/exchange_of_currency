@@ -1,105 +1,146 @@
 {% block modal %}
 <!--Оформление заявки-->
 <div class="modal fade" id="makeorder" tabindex="-1" role="dialog" aria-labelledby="makeOrderTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="makeOrderTitle">Оформление заявки</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="makeOrderTitle">Оформление заявки</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="text-center center-block">
+                        <h5></h5>
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">E-mail</span>
+                        </div>
+                        <input type="email" id="user_email" class="form-control" aria-label="Default" placeholder="example@mail.ru" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Номер карты:</span>
+                        </div>
+                        <input type="text" class="form-control" id="card_number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                    </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-primary" data-target="#moneyTransfer" id="order">Обменять</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--Перевод денег-->
+<div class="modal fade" id="moneyTransfer" tabindex="-1" role="dialog" aria-labelledby="moneyTransferLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="moneyTransferLabel">Перевод денег</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form_order" action="{% url 'send_order' %}">{% csrf_token %}
                 <div class="modal-body">
                     <div class="container">
-                            <div class="text-center center-block">
-                        <h5></h5></div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">E-mail</span>
+                        <h3 class="text-center center-block" id="order_timer">
+                            <span id="minutes">14</span> мин.
+                            <span id="seconds">59</span> с.</h3>
+
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Сумма:</label>
+                            <div class="col-sm-10">
+                                <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="0.001BTC">
                             </div>
-                            <input type="email" id="user_email" class="form-control" aria-label="Default" placeholder="example@mail.ru" aria-describedby="inputGroup-sizing-default">
                         </div>
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-default">Номер карты:</span>
+                        <div class="form-group row">
+                            <label for="staticEmail" class="col-sm-2 col-form-label">Bitcoin</label>
+                            <div class="col-sm-10">
+                                <input class="form-control" type="text" value="0xfv3ccdc5vfvf" readonly>
                             </div>
-                            <input type="text" class="form-control" id="card_number" aria-label="Default" aria-describedby="inputGroup-sizing-default">
                         </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"  data-dismiss="modal">Отмена</button>
-                    <button type="button" class="btn btn-primary" data-target="#moneyTransfer" id="order">Обменять</button>
+                    <button type="button" class="btn btn-secondary" id="stopTimer" data-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-primary" href="{{ send_email }}" data-toggle="modal" id="acceptOrder" data-target="#acceptTransfer">Я оплатил</button>
                 </div>
-            </div>
+            </form>
+
         </div>
     </div>
-    
-    <!--Перевод денег-->
-    <div class="modal fade" id="moneyTransfer" tabindex="-1" role="dialog" aria-labelledby="moneyTransferLabel" aria-hidden="true">
+</div>
+<!--First column-->
+<div class="modal fade" id="acceptTransfer" tabindex="-1" role="dialog" aria-labelledby="acceptTransferLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="acceptTransferLabel">Вы успешно создали заявку!</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="text-center center-block">
+                        <h5 class="modal-title" id="acceptTransferLabel">Ваша заявка в обработке!</h5>
+                        <br>
+
+                        <div class="alert alert-info" role="alert">
+                            Среднее время подтверждения транзакции составляет от 25 минут до нескольких часов. Перевод отображается только после 2 подтверждений.
+                        </div>
+                        <p>На указанный Вами почтовый адрес будет доставлено письмо</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" id="button_submit" data-dismiss="modal" data-target="#">Вернуться на сайт</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--Login-->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <form method="POST" action="{% url 'login' %}">{% csrf_token %}
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="moneyTransferLabel">Перевод денег</h5>
+                    <h5 class="modal-title">Войти</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                </div>
-                <form id="form_order" action="{% url 'send_order' %}">{% csrf_token %}
-                    <div class="modal-body">
-                        <div class="container">
-                            <h3 class="text-center center-block" id="order_timer">
-                                <span id="minutes">14</span> мин.
-                                <span id="seconds">59</span> с.</h3>
-    
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Сумма:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="0.001BTC">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="staticEmail" class="col-sm-2 col-form-label">Bitcoin</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control" type="text" value="0xfv3ccdc5vfvf" readonly>
-                                </div>
-                            </div>
-    
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" id="stopTimer" data-dismiss="modal">Отмена</button>
-                        <button type="submit" class="btn btn-primary" href="{{ send_email }}" data-toggle="modal" id="acceptOrder" data-target="#acceptTransfer">Я оплатил</button>
-                    </div>
-                </form>
-    
-            </div>
-        </div>
-    </div>
-    <!--First column-->
-    <div class="modal fade" id="acceptTransfer" tabindex="-1" role="dialog" aria-labelledby="acceptTransferLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="acceptTransferLabel">Вы успешно создали заявку!</h4>
                 </div>
                 <div class="modal-body">
                     <div class="container">
                         <div class="text-center center-block">
-                            <h5 class="modal-title" id="acceptTransferLabel">Ваша заявка в обработке!</h5>
-                            <br>
-    
-                            <div class="alert alert-info" role="alert">
-                                Среднее время подтверждения транзакции составляет от 25 минут до нескольких часов. Перевод отображается только после 2 подтверждений.
+                            <h5></h5>
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">E-mail</span>
                             </div>
-                            <p>На указанный Вами почтовый адрес будет доставлено письмо</p>
-                            <button type="button" class="btn btn-primary" data-toggle="modal" id="button_submit" data-dismiss="modal" data-target="#">Вернуться на сайт</button>
-    
+
+                            {{ limit.form.username }}
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-default">Пароль</span>
+                            </div>
+
+                            {{ limit.form.password }}
                         </div>
                     </div>
                 </div>
-    
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                    <button type="submit" class="btn btn-primary">Обменять</button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
+</div>
 {% endblock %}
